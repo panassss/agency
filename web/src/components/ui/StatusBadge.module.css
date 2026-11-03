@@ -1,0 +1,50 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.NEW {
+  background-color: rgb(100 204 197 / 18%);
+  color: #1d7f78;
+}
+
+.IN_PROGRESS {
+  background-color: rgb(240 170 40 / 18%);
+  color: #a86a00;
+}
+
+.DONE {
+  background-color: rgb(47 158 110 / 16%);
+  color: var(--color-success);
+}
+
+.CANCELLED {
+  background-color: rgb(127 127 127 / 16%);
+  color: var(--text-muted);
+}
+
+:global([data-theme='dark']) .NEW {
+  color: var(--color-accent);
+}
+
+:global([data-theme='dark']) .IN_PROGRESS {
+  color: #f0b44a;
+}
+
+:global([data-theme='dark']) .DONE {
+  color: #5ccf9a;
+}

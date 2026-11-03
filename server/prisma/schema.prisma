@@ -1,0 +1,124 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum RequestStatus {
+  NEW
+  IN_PROGRESS
+  DONE
+  CANCELLED
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  name         String    @db.VarChar(60)
+  email        String    @unique @db.VarChar(120)
+  passwordHash String    @map("password_hash")
+  role         Role      @default(USER)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  requests     Request[]
+
+  @@map("users")
+}
+
+model Service {
+  id               Int       @id @default(autoincrement())
+  slug             String    @unique @db.VarChar(80)
+  title            String    @db.VarChar(80)
+  shortDescription String    @map("short_description") @db.VarChar(300)
+  description      String
+  icon             String    @db.VarChar(20)
+  order            Int       @default(0)
+  createdAt        DateTime  @default(now()) @map("created_at")
+  projects         Project[]
+  requests         Request[]
+
+  @@map("services")
+}
+
+model Project {
+  id         Int      @id @default(autoincrement())
+  slug       String   @unique @db.VarChar(120)
+  /// Collation "uk-x-icu" (Ukrainian alphabetical order) is set in migration 20261008090000.
+  title      String   @db.VarChar(120)
+  subtitle   String   @db.VarChar(160)
+  serviceId  Int      @map("service_id")
+  service    Service  @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  client     String   @db.VarChar(120)
+  location   String   @db.VarChar(160)
+  date       DateTime @db.Date
+  coverImage String   @map("cover_image") @db.VarChar(500)
+  gallery    String[]
+  challenge  String
+  solution   String
+  result     String
+  featured   Boolean  @default(false)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([serviceId])
+  @@index([featured])
+  @@map("projects")
+}
+
+model TeamMember {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(60)
+  position  String  @db.VarChar(80)
+  photo     String  @db.VarChar(500)
+  facebook  String? @db.VarChar(300)
+  instagram String? @db.VarChar(300)
+  linkedin  String? @db.VarChar(300)
+  order     Int     @default(0)
+
+  @@map("team_members")
+}
+
+model Testimonial {
+  id       Int    @id @default(autoincrement())
+  author   String @db.VarChar(60)
+  position String @db.VarChar(80)
+  quote    String
+  avatar   String @db.VarChar(500)
+
+  @@map("testimonials")
+}
+
+model Request {
+  id        Int           @id @default(autoincrement())
+  firstName String        @map("first_name") @db.VarChar(60)
+  lastName  String        @map("last_name") @db.VarChar(60)
+  email     String        @db.VarChar(120)
+  phone     String        @db.VarChar(20)
+  message   String
+  status    RequestStatus @default(NEW)
+  serviceId Int?          @map("service_id")
+  service   Service?      @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  userId    Int?          @map("user_id")
+  user      User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([userId])
+  @@map("requests")
+}
+
+model Subscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique @db.VarChar(120)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("subscribers")
+}

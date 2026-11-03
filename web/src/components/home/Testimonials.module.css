@@ -1,0 +1,125 @@
+.card {
+  position: relative;
+  padding: 40px 20px;
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding-inline: 4px;
+  text-align: center;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.quote {
+  max-width: 1313px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5625rem);
+  font-weight: 700;
+  line-height: 1.17;
+  letter-spacing: 0;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h5);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+.position {
+  color: var(--text-muted);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 11px;
+  margin-top: 21px;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  color: var(--text);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.control:hover,
+.control:focus-visible {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-grey-dark);
+  transition:
+    width var(--transition),
+    background-color var(--transition);
+}
+
+.dotActive {
+  width: 24px;
+  border-radius: 4px;
+  background-color: var(--text);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 45px;
+  }
+
+  .slide {
+    gap: 35px;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
+}

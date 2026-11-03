@@ -1,0 +1,30 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: var(--fs-h2);
+  max-width: 18ch;
+}
+
+@media (min-width: 1024px) {
+  .heading {
+    gap: 24px;
+  }
+}

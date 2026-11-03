@@ -1,0 +1,20 @@
+.cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 45px 20px;
+  border-radius: var(--radius);
+  background-color: rgb(18 18 18 / 80%);
+  background-image: linear-gradient(rgb(18 18 18 / 80%), rgb(18 18 18 / 80%)), url('/img/cta-bg.webp');
+  background-size: cover;
+  background-position: center;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}

@@ -1,0 +1,214 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.steps {
+  /* slightly darker than the desktop #f4f4f4 so thin lines stay visible on phones */
+  --process-line: #e6e6e6;
+
+  display: grid;
+}
+
+:global([data-theme='dark']) .steps {
+  --process-line: #2c2c2c;
+}
+
+/*
+ * Mobile / tablet: a vertical timeline. The top border is "broken" around the icon
+ * and the title (as in the mockup), and a line with the mockup's chevron leads from
+ * each card down to the next step's icon.
+ */
+.steps {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+  gap: 88px;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 24px 28px;
+  border: 2px solid var(--process-line);
+  border-radius: 33px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: -43px;
+}
+
+.icon {
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px var(--bg);
+  color: var(--color-black);
+  --icon-fg: var(--color-white);
+}
+
+:global([data-theme='dark']) .icon {
+  color: var(--color-white);
+  --icon-fg: var(--color-black);
+}
+
+.title {
+  margin-top: 4px;
+  padding-inline: 8px 12px;
+  background-color: var(--bg);
+  font-size: clamp(1.25rem, 0.9rem + 1.6vw, 1.875rem);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.text {
+  max-width: 320px;
+  color: var(--text-muted);
+}
+
+/* connector line below the card, under the icon */
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 65px;
+  width: 2px;
+  height: 24px;
+  background-color: var(--process-line);
+  transform: translateX(-50%);
+}
+
+/* chevron pointing down to the next step */
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + 18px);
+  left: 65px;
+  width: 20px;
+  height: 32px;
+  background-color: var(--process-line);
+  -webkit-mask-image: url('/img/process-chevron.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url('/img/process-chevron.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+/*
+ * Desktop: the exact outline from the mockup — the card's right side turns into
+ * a connector line with an arrow that leads to the next step.
+ */
+@media (min-width: 1440px) {
+  .inner {
+    gap: 100px;
+  }
+
+  .steps {
+    --process-line: #f4f4f4;
+
+    grid-template-columns: repeat(3, minmax(0, 340fr)) minmax(0, 273fr);
+    gap: 0 28px;
+    max-width: none;
+    padding-top: 41px;
+  }
+
+  :global([data-theme='dark']) .steps {
+    --process-line: #2c2c2c;
+  }
+
+  .step {
+    display: block;
+    aspect-ratio: 340 / 216;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .step:last-child {
+    aspect-ratio: 273 / 216;
+  }
+
+  .step::before,
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    transform: none;
+    background-color: var(--process-line);
+    -webkit-mask-image: url('/img/process-card.svg');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: 0 0;
+    -webkit-mask-size: 100% 100%;
+    mask-image: url('/img/process-card.svg');
+    mask-repeat: no-repeat;
+    mask-position: 0 0;
+    mask-size: 100% 100%;
+  }
+
+  .step:last-child::before {
+    -webkit-mask-image: url('/img/process-card-last.svg');
+    mask-image: url('/img/process-card-last.svg');
+  }
+
+  .step:not(:last-child)::after {
+    display: block;
+    left: auto;
+    right: -4px;
+    bottom: auto;
+    top: calc(57.9% - 16px);
+    transform: none;
+  }
+
+  .head {
+    position: absolute;
+    top: -41px;
+    left: 12%;
+    z-index: 1;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .step:last-child .head {
+    left: 9%;
+  }
+
+  .icon {
+    box-shadow: none;
+  }
+
+  .title {
+    margin-top: 0;
+    padding: 0;
+    background-color: transparent;
+    font-size: 1.625rem;
+  }
+
+  .text {
+    position: absolute;
+    top: 36%;
+    left: 12%;
+    max-width: 200px;
+  }
+
+  .step:last-child .text {
+    left: 15%;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1599px) {
+  .title {
+    font-size: 1.4375rem;
+  }
+}

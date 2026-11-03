@@ -1,0 +1,40 @@
+.button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 20%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition:
+    opacity var(--transition),
+    transform var(--transition),
+    visibility var(--transition),
+    background-color var(--transition);
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+@media (min-width: 768px) {
+  .button {
+    right: 32px;
+    bottom: 32px;
+  }
+}

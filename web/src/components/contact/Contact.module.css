@@ -1,0 +1,128 @@
+.section {
+  padding-top: 24px;
+}
+
+.inner {
+  display: grid;
+  gap: 48px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: clamp(2.25rem, 1.6rem + 2vw, 3.5rem);
+}
+
+.lead {
+  max-width: 384px;
+  margin-top: 24px;
+  font-size: var(--fs-lead);
+  color: var(--text-muted);
+}
+
+.divider {
+  margin-block: 32px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  max-width: 401px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+  color: var(--color-black);
+  --icon-fg: var(--color-white);
+}
+
+:global([data-theme='dark']) .contactIcon {
+  color: var(--color-white);
+  --icon-fg: var(--color-black);
+}
+
+.contactLabel {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h5);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.contactValue {
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+a.contactValue:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  min-height: 32px;
+  color: var(--text);
+  transition:
+    color var(--transition),
+    transform var(--transition);
+}
+
+.socials a:hover {
+  color: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.formCard {
+  padding: 28px 20px;
+  border-radius: var(--radius);
+  background-color: var(--surface);
+}
+
+.map {
+  position: relative;
+  height: 314px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--surface);
+  isolation: isolate;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: 67px;
+  }
+
+  .inner {
+    grid-template-columns: 401px minmax(0, 795px);
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .formCard {
+    padding: 45px;
+  }
+
+  .map {
+    margin-top: 103px;
+  }
+}

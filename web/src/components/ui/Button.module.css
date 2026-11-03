@@ -1,0 +1,105 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 47px;
+  padding: 8px 15px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-align: center;
+  max-width: 100%;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.button:disabled {
+  opacity: 0.6;
+}
+
+.dark {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+}
+
+.dark:hover:not(:disabled) {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+.light {
+  background-color: var(--color-white);
+  color: var(--color-black-90);
+}
+
+.light:hover:not(:disabled) {
+  background-color: var(--color-accent);
+}
+
+.outline {
+  border-color: currentColor;
+  color: inherit;
+}
+
+.outline:hover:not(:disabled) {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.danger {
+  background-color: var(--color-error);
+  color: var(--color-white);
+}
+
+/* "Start your Free Trial" pill with a round chevron */
+.trial {
+  min-height: 48px;
+  padding: 10px 20px 10px 10px;
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+.trial .chevron {
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.trial:hover .chevron {
+  transform: translateX(3px);
+}
+
+.trial.light .chevron {
+  color: var(--color-black);
+  --icon-fg: var(--color-white);
+}
+
+.trial.dark .chevron {
+  color: var(--btn-text);
+  --icon-fg: var(--btn-bg);
+}
+
+.small {
+  min-height: 38px;
+  padding: 6px 14px;
+  font-size: 0.9375rem;
+}
+
+.block {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .button {
+    white-space: nowrap;
+  }
+}

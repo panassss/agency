@@ -1,0 +1,18 @@
+{
+  "name": "canvix-qa",
+  "private": true,
+  "type": "module",
+  "description": "Автоматична фінальна перевірка курсового проєкту Canvix",
+  "scripts": {
+    "api": "node api.mjs",
+    "e2e": "node e2e.mjs",
+    "robustness": "node robustness.mjs",
+    "responsive": "node responsive.mjs",
+    "validate": "node validate.mjs",
+    "all": "node api.mjs && node e2e.mjs && node robustness.mjs && node responsive.mjs && node validate.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.56.0",
+    "sharp": "^0.35.5"
+  }
+}
