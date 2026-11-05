@@ -25,7 +25,7 @@ services:
       - key: JWT_EXPIRES_IN
         value: 7d
       - key: CORS_ORIGIN
-        sync: false
+        value: https://canvix-web.onrender.com
       - key: ADMIN_EMAIL
         sync: false
       - key: ADMIN_PASSWORD
@@ -43,3 +43,5 @@ services:
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://canvix-api.onrender.com
+      - key: CORS_ORIGIN
+        value: https://canvix-web.onrender.com
