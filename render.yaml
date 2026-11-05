@@ -27,11 +27,11 @@ services:
       - key: CORS_ORIGIN
         value: https://canvix-web.onrender.com
       - key: ADMIN_EMAIL
-        sync: false
+        value: admin@canvix.ua
       - key: ADMIN_PASSWORD
-        sync: false
+        value: Admin12345
       - key: ADMIN_NAME
-        sync: false
+        value: Admin
 
   - type: web
     name: canvix-web
