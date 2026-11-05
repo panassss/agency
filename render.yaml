@@ -32,3 +32,14 @@ services:
         sync: false
       - key: ADMIN_NAME
         sync: false
+
+  - type: web
+    name: canvix-web
+    runtime: node
+    plan: free
+    rootDir: web
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://canvix-api.onrender.com
